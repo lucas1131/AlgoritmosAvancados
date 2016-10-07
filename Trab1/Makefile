@@ -1,5 +1,5 @@
 # Project name
-NAME=
+NAME=Trab1
 
 
 # Directories
