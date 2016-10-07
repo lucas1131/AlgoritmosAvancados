@@ -14,7 +14,9 @@ public:
 	Futoshiki();
 	Futoshiki(string path);
 
-	Solve(int flags);
+
+	void ReadBoard(string path);
+	bool Solve(int flags);
 
 	~Futoshiki();
 

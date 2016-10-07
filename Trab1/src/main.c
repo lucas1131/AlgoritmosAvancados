@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
 		// board.print();
 #endif
 
+		// cada tabuleira tem q ser resolvido com as 3 flags?
 		// board.solve(FLAGS);
 
 #ifdef debug
