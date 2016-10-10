@@ -8,11 +8,10 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
-/* Create and read futoshiki board
+/* Create and read futoshiki board */
 	int n;	// number of boards to solve
 
-	Futoshiki board = new Futoshiki("data/futoshiki.dat");
-*/
+	// Futoshiki board = new Futoshiki("data/futoshiki.dat");
 
 
 	for (int i = 0; i < n; i++){

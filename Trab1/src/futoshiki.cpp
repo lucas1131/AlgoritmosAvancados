@@ -1,23 +1,32 @@
 #include <iostream>
 #include <string>
 
+#include "futoshiki.hpp"
+
 using namespace std;
 
-#define DEFAULT	(1)
-#define LOOK_AHEAD (1 << 1)
-#define MIN_VALUE_LOOK_AHEAD (1 << 2)
-
-class Futoshiki {
-
-public:
 	
-	Futoshiki();
-	Futoshiki(string path);
+Futoshiki::Futoshiki(){
+
+	
+
+}
+
+Futoshiki::Futoshiki(string path){
+
+}
+
+Futoshiki::~Futoshiki(){
+
+}
 
 
-	void ReadBoard(string path);
-	bool Solve(int flags);
+void Futoshiki::ReadBoard(string path){
 
-	~Futoshiki();
+}
 
-};
+bool Futoshiki::Solve(int flags){
+
+}
+
+

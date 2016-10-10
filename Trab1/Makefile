@@ -13,12 +13,14 @@ OBJDIR=$(SRCDIR)/obj
 DEBUGGER=
 DBGFLAGS=-v --leak-check=full --show-leak-kinds=all --read-var-info=yes --track-origins=yes
 
-# Search for .c source files
-SRC=$(wildcard $(SRCDIR)/*.c)
-# Search for .h header files
-DEPS=$(wildcard $(INCDIR)/*.h)
+
+# Search for .cpp source files
+SRC=$(wildcard $(SRCDIR)/*.cpp)
+# Search for .hpp header files
+DEPS=$(wildcard $(INCDIR)/*.hpp)
 # Generate .o object files rules
-OBJ=$(foreach file, $(SRC), $(file:$(SRCDIR)/%.c=$(OBJDIR)/%.o))
+OBJ=$(foreach file, $(SRC), $(file:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o))
+
 
 ifdef IN
 INPUT= < $(IN)
@@ -29,32 +31,33 @@ OUTPUT= > $(OUT)
 endif
 
 
-CC=gcc
-CFLAGS=-O3 -I./$(INCDIR) 
+CC=g++
+CFLAGS=-O3 -I ./$(INCDIR) 
 
-LIBS=-lm
+LIBS=-lstdc++
 
 ifdef debug
 	CFLAGS += -Wall -Wextra -g -D DEBUG
 	DEBUGGER=valgrind $(DBGFLAGS) 
 endif
 
+
 all: clean main
 
 # Compile directives
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEPS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPS)
 	@echo Building $*
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
 	@echo Linking object files
-	@$(CC) -o $(BLDDIR)/$(NAME) $^ $(CFLAGS) $(LIBS)
+	@$(CC) -o $(BLDDIR)/$(NAME) $^ $(CFLAGS)
 
 
 # Run directives
 run:
 	$(DEBUGGER) ./$(BLDDIR)/$(NAME) $(INPUT) $(OUTPUT)
+
 
 # Utility directives
 clean:
@@ -80,6 +83,7 @@ zip: clean cleanobj
 	@echo Compressing files...
 	@zip -r $(NAME).zip *
 	@echo Done.
+
 
 # Check if project has a name before creating it
 create:
